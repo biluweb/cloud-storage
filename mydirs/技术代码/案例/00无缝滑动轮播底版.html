@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>01无缝滑动轮播</title>
+<style type="text/css">
+	* { margin: 0; padding: 0; list-style: none; }
+	.con { width: 400px; height: 307px; border:5px solid #ccc; margin: 100px auto; position: relative; }
+	.imgList{ width: 2000px; position:absolute; left: 0; top: 0;}
+	.imgList li{ float: left; width: 400px; height: 307px; }
+	.left,.right { width: 52px; height: 52px; position: absolute; top: 50%; margin: -26px 0 0 0; background: url(images/arr.png) no-repeat 0 0; }
+	.left { left: -21px; }
+	.right { background-position: -52px 0; right: -21px; }
+	.btnList{  width: 67px; height: 13px; position: absolute; left: 50%; bottom: -25px; margin-left:-33px;}
+	.btnList li { width: 13px; height: 13px; background:url(images/00.png) no-repeat 0 0; float:left; margin: 0 5px 0 0; cursor:pointer; }
+	.btnList li.current { background-position: 0 -26px; }
+</style>
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		
+		
+	})
+</script>
+</head>
+
+<body>
+	<div class="con">
+    	<ul class="imgList">
+        	<li><img src="images/01.jpg" width="400" height="307" /></li>
+        	<li><img src="images/02.jpg" width="400" height="307" /></li>
+        	<li><img src="images/03.jpg" width="400" height="307" /></li>
+        	<li><img src="images/04.jpg" width="400" height="307" /></li>
+        </ul>
+        <ol class="btnList">
+        	<li class="current"></li>
+        	<li></li>
+        	<li></li>
+        	<li style="margin-right:0;"></li>
+        </ol>
+        <a href="javascript:;" class="left"></a>
+        <a href="javascript:;" class="right"></a>
+    </div>
+</body>
+</html>

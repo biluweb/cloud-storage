@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>07京东导航</title>
+	<link rel="stylesheet" type="text/css" href="reset.css" />
+	<style type="text/css">
+		img{display: block; margin: 0 auto;}
+		.dianTi{width: 30px; height: 150px; position: fixed; top: 50%; margin-top: -75px;
+			left: 0; left: 50%; margin-left: -660px; color: #666; cursor: pointer; display: none;}
+		.dianTi li{height: 29px; border-bottom: 1px dotted #ccc; text-align: center;
+			line-height: 29px; position: relative;}
+		.wenZi{width: 29px; height: 29px; position: absolute; left: 0; top: 0; color: #C81623;
+			background: #fff; display: none;}
+		.dianTi li.current .wenZi{display: block;}
+		.dianTi li:hover .wenZi{display: block; background: #C81623; color: #fff;}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+
+		$(function() {
+			
+			//先获取各个楼层相对于document 0点的距离
+			//为什么-100：不需要十分精确，快到那个楼层，就OK了
+			var f1Top=$('.f1').offset().top-100;
+			var f2Top=$('.f2').offset().top-100;
+			var f3Top=$('.f3').offset().top-100;
+			var f4Top=$('.f4').offset().top-100;
+			var f5Top=$('.f5').offset().top-100;
+
+			//检测楼层功能封装
+			var jianCe=function(){
+
+				var windowScrollTop=$(window).scrollTop();
+
+				//为了不产生不知名的错误：把判断从大往小写
+				//这里后面的楼层top要比前面高
+				if(windowScrollTop>=f5Top){
+
+					console.log('到达5楼');
+					//到达5楼
+					$('.dianTi').show();
+					$('.dianTi li').eq(4).addClass('current').siblings('li').removeClass('current');
+
+				}else if(windowScrollTop>=f4Top){
+
+					console.log('到达4楼');
+					//到达4楼
+					$('.dianTi').show();
+					$('.dianTi li').eq(3).addClass('current').siblings('li').removeClass('current');
+
+				}else if(windowScrollTop>=f3Top){
+
+					console.log('到达3楼');
+					//到达3楼
+					$('.dianTi').show();
+					$('.dianTi li').eq(2).addClass('current').siblings('li').removeClass('current');
+
+				}else if(windowScrollTop>=f2Top){
+
+					console.log('到达2楼');
+					//到达2楼
+					$('.dianTi').show();
+					$('.dianTi li').eq(1).addClass('current').siblings('li').removeClass('current');
+
+				}else if(windowScrollTop>=f1Top){
+
+					console.log('到达1楼');
+					//到达一楼
+					$('.dianTi').show();
+					$('.dianTi li').eq(0).addClass('current').siblings('li').removeClass('current');
+
+				}else{
+
+					//不再5楼中的任意一层时，让电梯导航隐藏
+					$('.dianTi').hide();
+
+				}
+
+			}
+			
+			//当浏览器滚动时，电梯做相应的操作
+			$(window).scroll(jianCe);
+
+
+			$('.dianTi li').click(function(event) {
+
+ 				//在动画运动的过程中，不希望current特殊类名跟着满世界跑
+				//所以把让current满世界跑的源头掐掉
+				//源头：$(window).scroll()
+					
+				$(window).off('scroll');
+
+
+				//因为你移除了scroll事件，当前这个LI具备特殊类名还要再书写一次
+				$(this).addClass('current').siblings('li').removeClass('current');
+
+				//需要知道现在要往几层楼跳
+				//得到当前这个LI的序号，这个序号加1就是你需要去的楼层
+				var i=$(this).index()+1;
+				if(i==5){
+					//要往第5层跳
+					//检测楼层时，希望的差不多到了；跳转时，需要精确，所以再加上100
+					//f5Top是5层距离document 0点的距离
+					
+					//但是当动画执行完毕了，还要继续检测楼层
+					$('html,body').stop().animate({'scrollTop':f5Top+100}, 500,function(){
+						$(window).scroll(jianCe);
+					});
+					
+				}else if(i==4){
+
+					$('html,body').stop().animate({'scrollTop':f4Top+100}, 500,function(){
+						$(window).scroll(jianCe);
+					});
+
+
+				}else if(i==3){
+
+					$('html,body').stop().animate({'scrollTop':f3Top+100}, 500,function(){
+						$(window).scroll(jianCe);
+					});
+
+
+				}else if(i==2){
+
+					$('html,body').stop().animate({'scrollTop':f2Top+100}, 500,function(){
+						$(window).scroll(jianCe);
+					});
+
+				}else if(i==1){
+
+					$('html,body').stop().animate({'scrollTop':f1Top+100}, 500,function(){
+						$(window).scroll(jianCe);
+					});
+
+				}
+				
+			});
+
+
+		});
+
+	</script>
+</head>
+<body>
+	<img src="images/jd/main.jpg" height="1725" width="1210" class="main" />
+	<img src="images/jd/f1.jpg" height="767" width="1210" class="f1" />
+	<img src="images/jd/f2.jpg" height="747" width="1210" class="f2" />
+	<img src="images/jd/f3.jpg" height="609" width="1210" class="f3" />
+	<img src="images/jd/f4.jpg" height="608" width="1210" class="f4" />
+	<img src="images/jd/f5.jpg" height="748" width="1210" class="f5" />
+	<ul class="dianTi">
+		<li>
+			1F
+			<div class="wenZi">服饰</div>
+		</li>
+		<li>
+			2F
+			<div class="wenZi">美妆</div>
+		</li>
+		<li>
+			3F
+			<div class="wenZi">手机</div>
+		</li>
+		<li>
+			4F
+			<div class="wenZi">家电</div>
+		</li>
+		<li>
+			5F
+			<div class="wenZi">数码</div>
+		</li>
+	</ul>
+</body>
+</html>

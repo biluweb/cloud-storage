@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    </body>
+</html>
+<script>
+	//demo-1
+	console.log('demo-1\n创建js对象;');
+	var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+	console.log('var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};');
+	console.log('取js对象;');
+	console.log(person.firstName +' is '+person.age+' years old');
+
+	console.log('')
+
+	//demo-2
+	console.log('demo-2\n创建js对象; ');
+	var person2 = {
+	    firstName : "John",
+	    lastName  : "Doe",
+	    age       : 50,
+	    eyeColor  : "blue"
+	};
+	console.log(person2.firstName +' is '+person2.age+' years old');
+
+	console.log('')
+
+	console.log('demo-3,\n有两种方式可以访问对象属性\n你可以使用 .property 或 ["property"]')
+	//demo-3,有两种方式可以访问对象属性：
+	//你可以使用 .property 或 ["property"].
+	var person3={
+		firstName:'John',
+		lastName:'Doe',
+		id:5566
+	};
+	console.log(person3.firstName+' '+person3['lastName'])
+
+	console.log('')
+
+	//demo-4
+	//函数属性作为一个方法访问
+	//对象方法作为一个函数定义存储在对象属性中。
+	console.log('demo-4\n函数属性作为一个方法访问')
+	var person4={
+		firstName:'Blue',
+		lastName:'oboe',
+		id :888,
+		fullName:function(){
+			return this.firstName+' is '+this.lastName;
+		}
+	};
+	console.log('person4.fullName()');
+	console.log(person4.fullName());
+
+	console.log('')
+
+	console.log('demo-5\n对象方法是一个函数定义,并作为一个属性值存储。')
+	//demo-5
+	//对象方法是一个函数定义,并作为一个属性值存储。
+	var person5={
+		firstName:'Blue',
+		lastName:'oboe',
+		id:888,
+		fullName:function(){
+			return this.firstName+' is '+this.lastName;
+		}
+	};
+	console.log('person5.fullName——————返回键名对应的函数或值')
+	console.log(person5.fullName)
+
+
+
+
+
+
+
+
+
+</script>

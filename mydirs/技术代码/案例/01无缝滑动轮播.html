@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>01无缝滑动轮播</title>
+<style type="text/css">
+	* { margin: 0; padding: 0; list-style: none; }
+	.con { width: 400px; height: 307px; border:5px solid #ccc; margin: 100px auto; position: relative; }
+	.conIn{height: 307px; overflow: hidden; position: relative;}
+	.imgList{ width: 2000px; position:absolute; left: 0; top: 0;}
+	.imgList li{ float: left; width: 400px; height: 307px; }
+	.left,.right { width: 52px; height: 52px; position: absolute; top: 50%; margin: -26px 0 0 0; background: url(images/arr.png) no-repeat 0 0; }
+	.left { left: -21px; }
+	.right { background-position: -52px 0; right: -21px; }
+	.btnList{  width: 67px; height: 13px; position: absolute; left: 50%; bottom: -25px; margin-left:-33px;}
+	.btnList li { width: 13px; height: 13px; background:url(images/00.png) no-repeat 0 0; float:left; margin: 0 5px 0 0; cursor:pointer; }
+	.btnList li.current { background-position: 0 -26px; }
+</style>
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		//用来模拟那个不断在变化的角标序号
+		var btnKey=0;
+		//用来模拟那个不断在变化的图片序号
+		var imgKey=0;
+		var timer;
+
+		var firstLi=$('.imgList li:first').clone(true);
+		$('.imgList').append(firstLi);
+
+		function nextFn() {
+			
+			/*---------- 控制角标开始 ----------*/
+			btnKey++;
+			if(btnKey>3){
+				btnKey=0;
+			}
+			//让下一张图片对应的角标具备current...
+			$('.btnList li').eq(btnKey).addClass('current').siblings().removeClass('current');
+			/*---------- 控制角标结束 ----------*/
+
+
+			/*---------- 控制图片开始 ----------*/
+			//移动公式：下标*-400
+			imgKey++;
+			console.log(imgKey);
+			//这个判断触发时，可视区是停留在临时工身上的
+			if(imgKey>4){
+
+
+				//当停留在临时工身上时，用户以为它看到的是第0张，
+				//它单击下一张时，希望看到的是第1张
+				imgKey=1;
+				//如果直接往第1张跳，是让UL从-1600到-400过渡：走了1200PX[不对]
+				//我们想实现每次只走400PX
+				//一瞬间让left变成0：让UL从0到-400过渡
+				$('.imgList').css('left', 0);
+
+			}
+			var s=imgKey*-400;
+			$('.imgList').stop(true).animate({'left':s}, 500);
+			/*---------- 控制图片结束 ----------*/
+
+		}
+
+		//下一张
+		$('.right').click(nextFn);
+
+		//上一张
+		$('.left').click(function(event) {
+			
+			btnKey--;
+			if(btnKey<0){
+				btnKey=3;
+			}
+			//让上一张图片对应的角标具备current...
+			$('.btnList li').eq(btnKey).addClass('current').siblings().removeClass('current');
+
+			imgKey--;
+			if(imgKey<0){
+				imgKey=3;
+				//直接往最后一张跳，是让UL从0到-1200进行过渡【走多了】
+				//我们想实现每次只走400PX
+				//所以一瞬间让盒子到达-1600PX的位置
+				$('.imgList').css('left', -1600);
+			}
+			var s=imgKey*-400;
+			$('.imgList').stop(true).animate({'left':s}, 500);
+
+		});
+
+		//点击跳转
+		$('.btnList li').click(function(event) {
+			var i=$(this).index();
+			//控制小点
+			$('.btnList li').eq(i).addClass('current').siblings().removeClass('current');
+			var s=i*-400;
+			$('.imgList').stop(true).animate({'left':s}, 500);
+
+			//关键的一点，是要让点击跳转和【两个】全局变量进行同步
+			imgKey=i;
+			btnKey=i;
+		});
+
+
+		timer=setInterval(nextFn, 1500);
+
+		$('.con').hover(function() {
+			clearInterval(timer);
+		}, function() {
+			clearInterval(timer);
+			timer=setInterval(nextFn, 1500);
+		});
+
+	})
+</script>
+</head>
+
+<body>
+	<div class="con">
+		<div class="conIn">
+	    	<ul class="imgList">
+	        	<li><img src="images/01.jpg" width="400" height="307" /></li>
+	        	<li><img src="images/02.jpg" width="400" height="307" /></li>
+	        	<li><img src="images/03.jpg" width="400" height="307" /></li>
+	        	<li><img src="images/04.jpg" width="400" height="307" /></li>
+	        </ul>
+        </div>
+        <ol class="btnList">
+        	<li class="current"></li>
+        	<li></li>
+        	<li></li>
+        	<li style="margin-right:0;"></li>
+        </ol>
+        <a href="javascript:;" class="left"></a>
+        <a href="javascript:;" class="right"></a>
+    </div>
+</body>
+</html>

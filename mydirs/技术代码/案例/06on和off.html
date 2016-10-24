@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>06on和off</title>
+	<style type="text/css">
+		/**{margin: 0; padding: 0; border: 0;}*/
+		ul,li{list-style: none;}
+		.list{width: 400px; margin: 100px auto 0;}
+		.list li{height: 50px; border-bottom: 1px solid #000; background: yellowgreen;}
+		.box{width: 100px; height: 100px; background: yellowgreen;}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+
+		$(function() {
+			
+			/*$('button').click(function(event) {
+				alert();
+			});*/
+
+			/*$('button').on('click',function(){
+				alert();
+			});*/
+
+
+			/*$('.list li').click(function(event) {
+				alert('你单击了LI');
+			});*/
+
+			/*$('.list li').on('click',function(){
+
+				alert('你单击了LI');
+
+			})*/
+
+			/*$(document).on('click','.list li',function(){
+
+				alert('你单击了LI');
+
+			})
+
+
+			$('button').click(function(event) {
+				var myLi='<li>新增节点</li>'
+				$('.list').append(myLi);
+			});*/
+
+
+			$('div').click(function(event) {
+				alert('事件被触发了');
+				$(this).off('click');
+			});
+
+
+		});
+
+	</script>
+</head>
+<body>
+	<!-- <button>新增节点</button>
+	<ul class="list">
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul> -->
+	<div class="box"></div>
+</body>
+</html>

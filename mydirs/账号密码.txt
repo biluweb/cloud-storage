@@ -1,0 +1,38 @@
+龙鼎期货直播间SVN
+https://120.55.80.81/svn/live1
+账号:bilu
+密码:Password01!
+
+龙鼎股票直播间SVN
+https://120.55.80.81/svn/stock1
+
+//手机微信推广页面
+https://120.55.80.81/svn/mobile
+
+禅道网址
+http://192.168.0.68:81/zentao
+账号:bilu
+密码:12qwaszx
+
+outlook
+账号:ld\bilu
+邮箱：bilu@ld.com
+密码:Password01!
+
+龙鼎项目直播室2.0 SVN----API
+svn://svn2.apicloud.com/A6908224255910
+账号:毕露verygood
+密码:12qwaszx.bilu???
+
+龙鼎项目直播室测试
+18521357312
+123
+
+filezilla
+server ip：120.55.80.81
+bilu
+12qwaszx
+
+中班排班，按如下顺序轮值：
+刘畅   晨鸣   永杰   魏璐   老龚   毕露   东阳
+如遇特殊情况，临时调整
